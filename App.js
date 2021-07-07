@@ -2,6 +2,7 @@ import React from 'react';
 import type {Node} from 'react';
 import {StyleSheet, Text, View, Platform, Pressable} from 'react-native';
 import DropShadow from 'react-native-drop-shadow';
+import {Shadow} from 'react-native-shadow-2';
 
 const App: () => Node = () => {
   console.log(Platform.OS === 'ios');
@@ -36,12 +37,36 @@ const App: () => Node = () => {
         </Text>
         <DropShadow style={styles.shadowProp}>
           <Pressable
-            style={[styles.button, styles.boxShadow]}
+            style={styles.button}
             onPress={() => console.log('pressed')}>
             <Text style={(styles.text, styles.buttonText)}>See more</Text>
           </Pressable>
         </DropShadow>
       </View>
+
+      <Shadow
+        distance={5}
+        startColor={'#00000010'}
+        containerViewStyle={{marginVertical: 20}}
+        radius={8}>
+        <View style={[styles.card, {marginVertical: 0}]}>
+          <View>
+            <Text style={styles.heading}>
+              React Native cross-platform box shadow
+            </Text>
+          </View>
+          <Text style={styles.boxShadow}>
+            Using the Platform API to conditionally render box shadow
+          </Text>
+          <DropShadow style={styles.shadowProp}>
+            <Pressable
+              style={styles.button}
+              onPress={() => console.log('pressed')}>
+              <Text style={(styles.text, styles.buttonText)}>See more</Text>
+            </Pressable>
+          </DropShadow>
+        </View>
+      </Shadow>
     </View>
   );
 };
@@ -74,7 +99,7 @@ const styles = StyleSheet.create({
   // },
   shadowProp: {
     shadowColor: '#171717',
-    shadowOffset: {width: -4, height: 6},
+    shadowOffset: {width: 0, height: 3},
     shadowOpacity: 0.4,
     shadowRadius: 2,
   },
