@@ -1,6 +1,7 @@
 import React from 'react';
 import type {Node} from 'react';
 import {StyleSheet, Text, View, Platform, Pressable} from 'react-native';
+import DropShadow from 'react-native-drop-shadow';
 
 const App: () => Node = () => {
   console.log(Platform.OS === 'ios');
@@ -33,11 +34,13 @@ const App: () => Node = () => {
         <Text style={styles.boxShadow}>
           Using the Platform API to conditionally render box shadow
         </Text>
-        <Pressable
-          style={[styles.button, styles.boxShadow]}
-          onPress={() => console.log('pressed')}>
-          <Text style={(styles.text, styles.buttonText)}>View</Text>
-        </Pressable>
+        <DropShadow style={styles.shadowProp}>
+          <Pressable
+            style={[styles.button, styles.boxShadow]}
+            onPress={() => console.log('pressed')}>
+            <Text style={(styles.text, styles.buttonText)}>See more</Text>
+          </Pressable>
+        </DropShadow>
       </View>
     </View>
   );
@@ -69,20 +72,18 @@ const styles = StyleSheet.create({
   //   elevation: 8,
   //   shadowColor: '#171717',
   // },
-  // shadowProp: {
-  //   shadowColor: '#171717',
-  //   shadowOffset: {width: -2, height: 4},
-  //   shadowOpacity: 0.2,
-  //   shadowRadius: 3,
-  // },
+  shadowProp: {
+    shadowColor: '#171717',
+    shadowOffset: {width: -4, height: 6},
+    shadowOpacity: 0.4,
+    shadowRadius: 2,
+  },
   button: {
-    backgroundColor: '#0A1D37',
+    backgroundColor: '#4830D3',
     alignItems: 'center',
     justifyContent: 'center',
-    paddingVertical: 12,
-    paddingHorizontal: 32,
+    height: 42,
     borderRadius: 4,
-    elevation: 3,
     marginTop: 30,
   },
   buttonText: {
@@ -121,6 +122,6 @@ const generateBoxShadowStyle = (
   }
 };
 
-generateBoxShadowStyle(-2, 4, '#171717', 0.5, 3, 4, '#171717');
+generateBoxShadowStyle(-2, 4, '#171717', 0.2, 3, 4, '#171717');
 
 export default App;
